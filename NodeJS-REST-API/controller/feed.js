@@ -7,7 +7,7 @@ exports.getPosts = (req, res, next) => {
         content: "This is the first post Data",
         imageUrl: "/image/posts.jpg",
         creator: { name: "Yeison Casado" },
-        date: new Date(),
+        createdAt: new Date(),
       },
     ],
   });
@@ -20,12 +20,10 @@ exports.createPost = (req, res, next) => {
 
   res.status(201).json({
     message: "Post created in the db successfully",
-    post: [
-      {
-        title: title,
-        content: content,
-        id: new Date().toISOString(),
-      },
-    ],
+    post: {
+      _id: new Date().toISOString(),
+      title,
+      content,
+    },
   });
 };
