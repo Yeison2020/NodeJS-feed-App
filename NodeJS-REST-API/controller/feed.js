@@ -17,13 +17,11 @@ exports.getPosts = (req, res, next) => {
 
 exports.createPost = (req, res, next) => {
   const errors = validationResult(req);
-  if (!errors.isEmpty()) {
-    return res
-      .status(422)
-      .json({
-        message: "Validation failed, entered data is incorrect.",
-        errors: errors.array(),
-      });
+  if (errors.isEmpty()) {
+    return res.status(422).json({
+      message: "Validation failed, entered data is incorrect.",
+      errors: errors.array(),
+    });
   }
   // Create post in db
   const title = req.body.title;
