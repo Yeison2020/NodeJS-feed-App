@@ -4,7 +4,8 @@ const bodyParser = require("body-parser");
 
 const app = express();
 // Middleware to parse the data
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
+// app.use(bodyParser.json());
 
 //  Importing routes into App Js
 
