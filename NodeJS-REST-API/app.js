@@ -14,7 +14,7 @@ const feedRoutes = require("./routes/feed");
 
 app.use((req, res, next) => {
   // This allow my server to receive request from all different domains or local Host
-  res.setHeader("Access-Controll-Allow-Origin", "*");
+  res.setHeader("Access-Control-Allow-Origin", "*");
 
   // This allow my server to receive thos method only
   res.setHeader(
@@ -22,7 +22,7 @@ app.use((req, res, next) => {
     "GET, POST, PUT, DELETE, PATCH"
   );
   // Those are the Header type from the Client and Authorization allowing the server to set content type: Content-Type : "application/json"
-  res.setHeader("Access-Controll-Allow-Header", "Content-Type, Authorization");
+  res.setHeader("Access-Control-Allow-Header", "Content-Type, Authorization");
   next();
 });
 
