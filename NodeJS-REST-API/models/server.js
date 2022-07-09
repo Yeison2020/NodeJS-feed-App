@@ -3,13 +3,11 @@ const cors = require("cors");
 const { dbConnection } = require("../database/config");
 const bodyParser = require("body-parser");
 
-const feedRoutes = require("../routes/feed");
-
 class Server {
   constructor() {
     this.app = express();
     this.port = process.env.PORT;
-    this.postUser = feedRoutes;
+    this.postPath = "/feed/posts";
 
     // Connecting and calling methods
     this.connectarDB();
@@ -35,7 +33,7 @@ class Server {
   }
 
   routes() {
-    this.app.use(this.postUser);
+    this.app.use(this.postPath, require("../routes/feed"));
   }
 
   parserBody() {
