@@ -1,5 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
+require("dotenv").config();
+const { dbConnection } = require("./database/config");
 // Initializing instaces of My dependancies
 
 const app = express();
@@ -31,4 +33,9 @@ app.use((req, res, next) => {
 
 app.use("/feed", feedRoutes);
 
-app.listen(8080);
+app.listen(
+  8080,
+  (connectarDB = async () => {
+    await dbConnection();
+  })
+);
