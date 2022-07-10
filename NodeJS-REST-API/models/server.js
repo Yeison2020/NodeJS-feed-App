@@ -10,10 +10,10 @@ class Server {
     this.postPath = "/feed/posts";
 
     // Connecting and calling methods
+
     this.connectarDB();
     this.middlewares();
     this.routes();
-    this.parserBody();
   }
 
   // Calling meethods
@@ -25,6 +25,7 @@ class Server {
 
   middlewares() {
     this.app.use(cors());
+    this.app.use(bodyParser.json());
 
     this.app.use(express.json());
 
@@ -34,10 +35,6 @@ class Server {
 
   routes() {
     this.app.use(this.postPath, require("../routes/feed"));
-  }
-
-  parserBody() {
-    this.app.use(bodyParser.urlencoded({ extended: false }));
   }
 
   listen() {
